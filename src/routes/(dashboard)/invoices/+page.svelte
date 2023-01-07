@@ -2,10 +2,7 @@
   import { invoices, loadInvoices } from '$lib/stores/invoiceStore';
   import { onMount } from 'svelte';
   import CircledAmount from '$lib/components/CircledAmount.svelte';
-  import ThreeDots from '$lib/components/icons/ThreeDots.svelte';
-  import View from '$lib/components/icons/View.svelte';
   import Search from '$lib/components/Search.svelte';
-  import Tag from '$lib/components/Tag.svelte';
   import type { PageData } from './$types';
   import InvoiceRow from './InvoiceRow.svelte';
   import { sumInvoices } from '$lib/utils/moneyHelpers';
@@ -48,10 +45,13 @@
     <div />
     <div />
   </div>
+
   <!-- invoices -->
-  {#each $invoices as invoice}
-    <InvoiceRow {invoice} />
-  {/each}
+  <div class="flex flex-col-reverse ">
+    {#each $invoices as invoice}
+      <InvoiceRow {invoice} />
+    {/each}
+  </div>
 </div>
 
 <CircledAmount label="Total" amount={sumInvoices($invoices)} />
