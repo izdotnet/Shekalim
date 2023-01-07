@@ -1,17 +1,44 @@
 <script lang="ts">
+  import AdditionalOptions from '$lib/components/AdditionalOptions.svelte';
   import ThreeDots from '$lib/components/icons/ThreeDots.svelte';
   import View from '$lib/components/icons/View.svelte';
   import Tag from '$lib/components/Tag.svelte';
   import { isLate } from '$lib/utils/dateHelpers';
   import { sumLineItems, toShekels } from '$lib/utils/moneyHelpers';
+  import Trash from '$lib/components/icons/Trash.svelte';
+  import Edit from '$lib/components/icons/Edit.svelte';
+  import Send from '$lib/components/icons/Send.svelte';
 
   export let invoice: Invoice;
+  let isAdditionalOptionsOpen = false;
+  let isOptionsDisabled = false;
+
+  const handleDelete = () => {
+    console.log('delete');
+  };
+
+  const handleEdit = () => {
+    console.log('edit');
+  };
+
+  const handleSendInvoice = () => {
+    console.log('send');
+  };
 
   const getInvoiceLabel = () => {
     if (invoice.invoiceStatus === 'draft') return 'draft';
-    if (invoice.invoiceStatus === 'sent' && !isLate(invoice.dueDate)) return 'sent';
-    if (invoice.invoiceStatus === 'sent' && isLate(invoice.dueDate)) return 'late';
-    if (invoice.invoiceStatus === 'paid') return 'paid';
+    if (invoice.invoiceStatus === 'sent' && !isLate(invoice.dueDate)) {
+      isOptionsDisabled = true;
+      return 'sent';
+    }
+    if (invoice.invoiceStatus === 'sent' && isLate(invoice.dueDate)) {
+      isOptionsDisabled = true;
+      return 'late';
+    }
+    if (invoice.invoiceStatus === 'paid') {
+      isOptionsDisabled = true;
+      return 'paid';
+    }
   };
 </script>
 
@@ -28,11 +55,27 @@
   <div class="text-sm lg:text-lg font-mono font-bold amount text-right">
     {toShekels(sumLineItems(invoice.lineItems))}
   </div>
-  <div class="text-sm lg:text-lg center viewButton">
-    <a href="#" class="text-blue-700 hover:text-blue-600 hidden lg:block"><View /></a>
+
+  <!-- View BTN -->
+  <div class="center viewButton hidden text-sm lg:flex lg:text-lg">
+    <a href="#" class="text-blue-700 hover:text-yellow-400"><View /></a>
   </div>
-  <div class="text-sm lg:text-lg center moreButton">
-    <button class=" text-blue-700 hover:text-blue-600 hidden lg:block"><ThreeDots /></button>
+
+  <!-- More BTN -->
+  <div class="center moreButton hidden text-sm lg:flex lg:text-lg relative">
+    <button
+      on:click={() => (isAdditionalOptionsOpen = !isAdditionalOptionsOpen)}
+      class="text-blue-700 hover:text-yellow-400"><ThreeDots /></button
+    >
+    {#if isAdditionalOptionsOpen}
+      <AdditionalOptions
+        options={[
+          { label: 'Edit', icon: Edit, onClick: handleEdit, disabled: isOptionsDisabled },
+          { label: 'Delete', icon: Trash, onClick: handleDelete, disabled: false },
+          { label: 'Send', icon: Send, onClick: handleSendInvoice, disabled: isOptionsDisabled }
+        ]}
+      />
+    {/if}
   </div>
 </div>
 

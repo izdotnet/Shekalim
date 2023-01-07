@@ -4,7 +4,7 @@ export const sumLineItems = (lineItems: LineItems[] | undefined): number => {
 };
 
 export const toShekels = (num: number): string => {
-  if (!num || num === 0) return toShekels(0);
+  if (!num || num === 0) return '₪0.00';
   const shekels = num / 100;
   const addDecimals = twoDecimals(shekels);
   return addShekelSign(addSeperators(addDecimals));
