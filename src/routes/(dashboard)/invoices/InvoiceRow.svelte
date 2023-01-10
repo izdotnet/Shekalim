@@ -8,12 +8,18 @@
   import Trash from '$lib/components/icons/Trash.svelte';
   import Edit from '$lib/components/icons/Edit.svelte';
   import Send from '$lib/components/icons/Send.svelte';
+  import Modal from '$lib/components/Modal.svelte';
+  import Button from '$lib/components/Button.svelte';
+  import { deleteInvoice } from '$lib/stores/invoiceStore';
 
   export let invoice: Invoice;
   let isAdditionalOptionsOpen = false;
   let isOptionsDisabled = false;
+  let isModalShowing = false;
 
   const handleDelete = () => {
+    isModalShowing = true;
+    isAdditionalOptionsOpen = false;
     console.log('delete');
   };
 
@@ -78,6 +84,32 @@
     {/if}
   </div>
 </div>
+
+<Modal isVisible={isModalShowing} on:close={() => (isModalShowing = false)}>
+  <div class="flex flex-col justify-between items-center gap-6 h-full min-h-[175px]">
+    <div class="text-center text-xl mt-7 font-bold text-blue-700">
+      Delete invoice to <span class="text-scarlet">{invoice.client.name}</span> for
+      <span class="text-scarlet">{toShekels(sumLineItems(invoice.lineItems))}</span>
+    </div>
+    <div class="flex gap-x-6 ">
+      <Button
+        label="Cancel"
+        onClick={() => (isModalShowing = false)}
+        isAnimated={false}
+        style="secondary"
+      />
+      <Button
+        label="Delete"
+        onClick={() => {
+          isModalShowing = false;
+          deleteInvoice(invoice);
+        }}
+        isAnimated={false}
+        style="destructive"
+      />
+    </div>
+  </div>
+</Modal>
 
 <style lang="postcss">
   .invoice-row {

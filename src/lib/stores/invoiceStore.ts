@@ -5,4 +5,9 @@ export const invoices = writable<Invoice[]>([]);
 
 export const loadInvoices = () => {
   invoices.set(data.invoices);
+  // invoices.set([]);
+};
+
+export const deleteInvoice = (invoice: Invoice) => {
+  invoices.update((prev: Invoice[]) => prev.filter((curInv) => curInv.id !== invoice.id));
 };
