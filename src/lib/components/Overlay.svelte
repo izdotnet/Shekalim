@@ -5,4 +5,4 @@
     }
   </style>
 </svelte:head>
-<div class="fixed inset-0 bg-blueGem opacity-60 z-overlay" />
+<div class="fixed inset-0 bg-silver opacity-60 z-overlay" />

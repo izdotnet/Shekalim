@@ -9,8 +9,12 @@
   import { sumInvoices } from '$lib/utils/moneyHelpers';
   import BlankState from './BlankState.svelte';
   import Button from '$lib/components/Button.svelte';
+  import SlidePanel from '$lib/components/SlidePanel.svelte';
+  import InvoiceForm from './InvoiceForm.svelte';
 
   // export let data: PageData;
+
+  let isInvoiceFormShowing = false;
 
   onMount(() => {
     loadInvoices();
@@ -28,7 +32,12 @@
   <Search />
   <!-- New Invoice BTN -->
   <div>
-    <Button label="+ Invoice" onClick={() => {}} />
+    <Button
+      label="+ Invoice"
+      onClick={() => {
+        isInvoiceFormShowing = true;
+      }}
+    />
   </div>
 </div>
 
@@ -49,3 +58,14 @@
     <CircledAmount label="Total" amount={sumInvoices($invoices)} />
   {/if}
 </div>
+
+<!-- Slide panel -->
+{#if isInvoiceFormShowing}
+  <SlidePanel
+    on:closePanel={() => {
+      isInvoiceFormShowing = false;
+    }}
+  >
+    <InvoiceForm />
+  </SlidePanel>
+{/if}

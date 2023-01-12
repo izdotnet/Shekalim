@@ -9,12 +9,17 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        circle: "url('/Circle.svg')"
+        circle: "url('/Circle.svg')",
+        chevronDown: "url('/chevron-down.svg')"
+      },
+      backgroundPosition: {
+        'right-center': '97% center'
       },
       boxShadow: {
         colored: '0px 7px 16px rgba(10,70,220,0.002)',
         coloredHover: '0px 16px 25px rgba(10,70,220,0.3)',
-        tableRow: '0px 0px 6px rgba(0,0,0,0.16)'
+        tableRow: '0px 0px 6px rgba(0,0,0,0.16)',
+        slidePanel: '-4px 0px 44px rgba(0,0,0,0.25)'
       },
       colors: {
         lavenderIndigo: '#8657e1',
@@ -39,7 +44,8 @@ module.exports = {
       },
       zIndex: {
         modal: 999,
-        overlay: 998,
+        slidePanel: 998,
+        overlay: 997,
         navBarToggle: 91,
         navBar: 90
       }

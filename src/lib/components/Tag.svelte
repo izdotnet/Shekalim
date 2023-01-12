@@ -19,10 +19,10 @@
     @apply border-blue-700 text-blue-700;
   }
   .success {
-    @apply border-robinEggBlue bg-robinEggBlue text-blueGem;
+    @apply border-blue-800 bg-blue-700 text-white;
   }
   .archive {
-    @apply border-blue-700 bg-blue-700 text-white;
+    @apply border-green-700 bg-green-700 text-white;
   }
   .overdue {
     @apply border-scarlet bg-scarlet text-white;
