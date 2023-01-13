@@ -1,4 +1,4 @@
-export const sumLineItems = (lineItems: LineItems[] | undefined): number => {
+export const sumLineItems = (lineItems: LineItem[] | undefined): number => {
   if (!lineItems) return 0;
   return lineItems.reduce((prev, current) => prev + current.amount, 0);
 };
@@ -21,3 +21,5 @@ export const sumInvoices = (invoices: Invoice[] | undefined): string => {
   const total = invoices.reduce((prev, current) => prev + sumLineItems(current.lineItems), 0);
   return toShekels(total);
 };
+
+export const shekelToAgorot = (shekel: number): number => shekel * 100;

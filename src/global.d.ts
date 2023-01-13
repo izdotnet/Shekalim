@@ -6,7 +6,7 @@ type Invoice = {
   invoiceNumber: string;
   invoiceStatus: InvoiceStatus;
   issueDate: string;
-  lineItems?: LineItems[];
+  lineItems?: LineItem[];
   notes?: string;
   subject?: string;
   terms?: string;
@@ -22,7 +22,7 @@ type Client = {
   street: string;
 };
 
-type LineItems = {
+type LineItem = {
   amount: number;
   description: string;
   id: string;

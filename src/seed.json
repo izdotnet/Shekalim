@@ -1,17 +1,43 @@
 {
+  "clients": [
+    {
+      "address": "123 Street",
+      "city": "Jerusalem",
+      "email": "mail@example.com",
+      "id": "1",
+      "name": "Mashbir",
+      "zip": "12345"
+    },
+    {
+      "address": "456 Haturim",
+      "city": "Tel-Aviv",
+      "email": "mail@test.com",
+      "id": "2",
+      "name": "Halav Gad",
+      "zip": "67890"
+    },
+    {
+      "address": "789 Mizrah",
+      "city": "Ashkelon",
+      "email": "mail@test.com",
+      "id": "3",
+      "name": "Coca Cola",
+      "zip": "87654"
+    }
+  ],
   "invoices": [
     {
       "client": {
-        "city": "Jerusalem",
+        "city": "Netanya",
         "clientStatus": "active",
-        "email": "compressed@example.com",
+        "email": "mail@example.com",
         "id": "1",
-        "name": "HackerU",
-        "country": "Israel",
-        "street": "123 Main Street"
+        "name": "Halav Gad",
+        "street": "123 Main Street",
+        "zip": "12345"
       },
       "createdAt": "2022-07-01",
-      "dueDate": "2023-01-31",
+      "dueDate": "2022-07-31",
       "id": "1",
       "invoiceNumber": "12345",
       "invoiceStatus": "draft",
@@ -19,30 +45,30 @@
       "lineItems": [
         {
           "amount": 100,
-          "description": "Podcast Episode #1",
+          "description": "Milk",
           "id": "1",
           "quantity": 1
         },
         {
           "amount": 200,
-          "description": "Podcast Episode #2",
+          "description": "Cheese",
           "id": "2",
           "quantity": 1
         }
       ],
       "notes": "**This** please.",
-      "subject": "Podcast Episodes",
+      "subject": "Pita",
       "terms": "_Pay_ me."
     },
     {
       "client": {
-        "city": "Tel-Aviv",
+        "city": "Netanya",
         "clientStatus": "active",
-        "email": "compressed@example.com",
+        "email": "mail@example.com",
         "id": "1",
-        "name": "Inbal Hotel",
-        "country": "Israel",
-        "street": "123 Main Street"
+        "name": "Halav Gad",
+        "street": "123 Main Street",
+        "zip": "12345"
       },
       "createdAt": "2022-07-01",
       "dueDate": "2022-07-06",
@@ -53,61 +79,61 @@
       "lineItems": [
         {
           "amount": 300,
-          "description": "Podcast Episode #1",
+          "description": "Humus",
           "id": "3",
           "quantity": 1
         },
         {
           "amount": 500,
-          "description": "Podcast Episode #2",
+          "description": "Labneh",
           "id": "4",
           "quantity": 1
         }
       ],
-      "subject": "Podcast Episodes"
+      "subject": "Food"
     },
     {
       "client": {
-        "city": "Ashkelon",
-        "email": "svelte@example.com",
+        "city": "Jerusalem",
+        "email": "mail@example.com",
         "id": "2",
-        "name": "Svelte Dev",
-        "country": "Israel",
-        "street": "456 Country Street"
+        "name": "Mashbir",
+        "street": "456 Mizrah",
+        "zip": "98765"
       },
       "createdAt": "2022-07-01",
       "dueDate": "2022-10-06",
-      "id": "5",
+      "id": "6",
       "invoiceNumber": "12346",
       "invoiceStatus": "paid",
       "issueDate": "2022-07-01",
       "lineItems": [
         {
           "amount": 1000,
-          "description": "Complete Tier",
+          "description": "T-shirt",
           "id": "5",
           "quantity": 1
         },
         {
           "amount": 5000,
-          "description": "Starter Tier",
+          "description": "Trousers",
           "id": "6",
           "quantity": 2
         }
       ],
-      "subject": "Course Material"
+      "subject": "Clothing"
     },
     {
       "client": {
-        "city": "Netanya",
-        "email": "zeal@example.com",
+        "city": "Tel-Aviv",
+        "email": "mail@example.com",
         "id": "3",
-        "name": "Channel 12",
-        "country": "Israel",
-        "street": "789 Common Drive"
+        "name": "Coca Cola",
+        "street": "789 Ben Yehuda",
+        "zip": "56789"
       },
       "createdAt": "2022-07-01",
-      "dueDate": "2023-6-06",
+      "dueDate": "2022-06-06",
       "id": "7",
       "invoiceNumber": "12347",
       "invoiceStatus": "sent",
@@ -115,37 +141,37 @@
       "lineItems": [
         {
           "amount": 5000000,
-          "description": "Website Design",
+          "description": "Sprite",
           "id": "4",
           "quantity": 1
         }
       ],
-      "subject": "Website"
+      "subject": "Drinks"
     },
     {
       "client": {
-        "city": "Beersheva",
-        "email": "zeal@example.com",
+        "city": "Haifa",
+        "email": "mail@example.com",
         "id": "3",
-        "name": "Reshet",
-        "country": "Israel",
-        "street": "789 Common Drive"
+        "name": "Mashbir",
+        "street": "789 Old Town",
+        "zip": "56789"
       },
       "createdAt": "2022-07-06",
       "dueDate": "2022-10-06",
-      "id": "7",
+      "id": "5",
       "invoiceNumber": "12348",
       "invoiceStatus": "sent",
       "issueDate": "2022-07-06",
       "lineItems": [
         {
           "amount": 1000000,
-          "description": "Website Development",
+          "description": "Coats",
           "id": "1",
           "quantity": 1
         }
       ],
-      "subject": "Website"
+      "subject": "Clothing"
     }
   ]
 }

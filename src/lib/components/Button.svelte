@@ -3,7 +3,13 @@
   export let label: string;
   export let onClick: () => void;
   export let isAnimated = true;
-  export let style: 'primary' | 'secondary' | 'destructive' | 'outline' | 'textOnly' = 'primary';
+  export let style:
+    | 'primary'
+    | 'secondary'
+    | 'destructive'
+    | 'outline'
+    | 'textOnly'
+    | 'textOnlyDestructive' = 'primary';
   export let iconLeft: (new (...args: any[]) => SvelteComponent) | null = null;
   export let iconRight: (new (...args: any[]) => SvelteComponent) | null = null;
 </script>
@@ -17,6 +23,7 @@
   class:textOnly={style === 'textOnly'}
   class:secondary={style === 'secondary'}
   class:destructive={style === 'destructive'}
+  class:textOnlyDestructive={style === 'textOnlyDestructive'}
 >
   {#if iconLeft}
     <svelte:component this={iconLeft} class="mr-2" />
@@ -44,6 +51,9 @@
     @apply border-blue-700 bg-white text-blue-700 duration-200 hover:bg-blue-700 hover:text-white;
   }
   .textOnly {
+    @apply bg-transparent px-0 text-blue-700 no-underline hover:underline;
+  }
+  .textOnlyDestructive {
     @apply bg-transparent px-0 text-scarlet underline hover:no-underline;
   }
 </style>
