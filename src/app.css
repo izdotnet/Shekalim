@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Kalam&family=Source+Code+Pro:wght@400;700&family=Source+Sans+Pro:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,15 +17,15 @@
   input[type='date'],
   input[type='password'],
   input[type='email'] {
-    @apply h-14 w-full rounded-lg border-2 border-silver px-4 font-sansSerif text-base;
+    @apply h-10 w-full rounded-lg border-2 border-silver px-4 font-sansSerif text-base lg:h-14;
   }
 
   textarea {
-    @apply h-32 w-full rounded-lg border-2 border-silver p-4 font-sansSerif text-base;
+    @apply h-32 w-full rounded-lg border-2 border-silver p-4  font-sansSerif text-base;
   }
 
   select {
-    @apply h-14 w-full appearance-none rounded-lg border-2 border-silver bg-chevronDown bg-right-center bg-no-repeat p-4;
+    @apply h-10 w-full appearance-none rounded-lg border-2 border-silver bg-chevronDown bg-right-center bg-no-repeat px-4 lg:h-14 lg:p-4;
   }
 
   select:focus,
@@ -36,7 +35,7 @@
   input[type='date']:focus,
   input[type='password']:focus,
   input[type='email']:focus {
-    @apply border-2 border-blue-600 outline-none;
+    @apply border-2 border-blue-700 outline-none;
   }
 
   svg {
@@ -48,13 +47,50 @@
   .invoice-table {
     @apply mb-3 grid w-full grid-cols-invoiceTableMobile gap-x-4 px-4 lg:grid-cols-invoiceTable lg:px-6;
   }
+
+  .invoice-line-item {
+    @apply relative grid gap-5 sm:grid-cols-invoiceLineItem;
+    grid-template-areas:
+      'description description description'
+      'unitPrice qty amount';
+  }
+
+  @media (min-width: 640px) {
+    .invoice-line-item {
+      grid-template-areas: 'description unitPrice qty amount trash';
+    }
+  }
+
+  .invoice-line-item .description {
+    grid-area: description;
+  }
+
+  .invoice-line-item .unitPrice {
+    grid-area: unitPrice;
+  }
+
+  .invoice-line-item .qty {
+    grid-area: qty;
+  }
+
+  .invoice-line-item .amount {
+    grid-area: amount;
+  }
+
+  .invoice-line-item .trash {
+    @apply absolute top-0 right-0 sm:relative;
+    grid-area: trash;
+  }
+
   .field {
     @apply mb-6;
   }
-  .invoice-line-item {
-    @apply grid grid-cols-invoiceLineItem gap-x-5;
+
+  .button {
+    @apply relative flex items-center whitespace-nowrap rounded-lg px-5 py-2 font-sansSerif text-base font-black lg:px-10 lg:py-3 lg:text-xl;
   }
 }
+
 @layer utilities {
   .center {
     @apply flex items-center justify-center;

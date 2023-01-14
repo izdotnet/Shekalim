@@ -6,8 +6,9 @@
 
   export let lineItem: LineItem;
   export let canDelete: boolean = false;
+  export let isRequired: boolean = false;
 
-  let unitPrice: string = twoDecimals(lineItem.amount / lineItem.quantity);
+  let unitPrice: string = twoDecimals(lineItem.amount / lineItem.quantity / 100);
   let amount: string = twoDecimals(lineItem.amount);
 
   let dispatch = createEventDispatcher();
@@ -22,24 +23,28 @@
   }
 </script>
 
-<div class="invoice-line-item border-b-2 border-stone-300 py-2">
-  <div>
+<div class="invoice-line-item border-b-2 border-stone-300 py-4 sm:py-2">
+  <div class="description">
+    <label for="description" class="line-item-label">Description</label>
     <input
       class="line-item"
       type="text"
       name="description"
       use:init
       bind:value={lineItem.description}
+      required={isRequired}
     />
   </div>
 
-  <div>
+  <div class="unitPrice">
+    <label for="unitPrice" class="line-item-label text-center">Unit Price</label>
     <input
       class="line-item text-right"
       type="number"
       name="unitPrice"
       step="0.01"
       min="0"
+      required={isRequired}
       bind:value={unitPrice}
       on:blur={() => {
         unitPrice = twoDecimals(Number(unitPrice));
@@ -48,12 +53,14 @@
     />
   </div>
 
-  <div>
+  <div class="quantity">
+    <label for="quantity" class="line-item-label text-center">Qty</label>
     <input
       class="line-item text-center"
       type="number"
       name="quantity"
       min="0"
+      required={isRequired}
       bind:value={lineItem.quantity}
       on:blur={() => {
         dispatch('updateLineItem');
@@ -61,7 +68,8 @@
     />
   </div>
 
-  <div>
+  <div class="amount">
+    <label for="amount" class="line-item-label text-right">Amount</label>
     <input
       class="line-item text-right"
       type="number"
@@ -73,7 +81,7 @@
     />
   </div>
 
-  <div>
+  <div class="trash">
     {#if canDelete}
       <button
         on:click|preventDefault={() => dispatch('removeLineItem', lineItem.id)}
@@ -105,5 +113,9 @@
   input[type='number']:disabled,
   input[type='text']:disabled {
     @apply border-b-0 bg-transparent px-0;
+  }
+
+  .line-item-label {
+    @apply block sm:hidden;
   }
 </style>

@@ -23,3 +23,15 @@ export const sumInvoices = (invoices: Invoice[] | undefined): string => {
 };
 
 export const shekelToAgorot = (shekel: number): number => shekel * 100;
+
+export const invoiceTotal = (
+  lineItems: LineItem[] | undefined,
+  discount: number | undefined
+): number => {
+  const lineItemsSum = sumLineItems(lineItems);
+  if (discount) {
+    const invoiceDiscount = lineItemsSum * (discount / 100);
+    return lineItemsSum - invoiceDiscount;
+  }
+  return lineItemsSum;
+};

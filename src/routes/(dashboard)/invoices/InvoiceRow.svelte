@@ -4,18 +4,19 @@
   import View from '$lib/components/icons/View.svelte';
   import Tag from '$lib/components/Tag.svelte';
   import { isLate } from '$lib/utils/dateHelpers';
-  import { sumLineItems, toShekels } from '$lib/utils/moneyHelpers';
+  import { invoiceTotal, sumLineItems, toShekels } from '$lib/utils/moneyHelpers';
   import Trash from '$lib/components/icons/Trash.svelte';
   import Edit from '$lib/components/icons/Edit.svelte';
   import Send from '$lib/components/icons/Send.svelte';
-  import Modal from '$lib/components/Modal.svelte';
-  import Button from '$lib/components/Button.svelte';
-  import { deleteInvoice } from '$lib/stores/invoiceStore';
+  import SlidePanel from '$lib/components/SlidePanel.svelte';
+  import InvoiceForm from './InvoiceForm.svelte';
+  import ConfirmDelete from './ConfirmDelete.svelte';
 
   export let invoice: Invoice;
   let isAdditionalOptionsOpen = false;
   let isOptionsDisabled = false;
   let isModalShowing = false;
+  let isInvoiceFormShowing = false;
 
   const handleDelete = () => {
     isModalShowing = true;
@@ -24,12 +25,11 @@
   };
 
   const handleEdit = () => {
-    console.log('edit');
+    isInvoiceFormShowing = true;
+    isAdditionalOptionsOpen = false;
   };
 
-  const handleSendInvoice = () => {
-    console.log('send');
-  };
+  const handleSendInvoice = () => {};
 
   const getInvoiceLabel = () => {
     if (invoice.invoiceStatus === 'draft') return 'draft';
@@ -59,16 +59,16 @@
     {invoice.client.name}
   </div>
   <div class="text-sm lg:text-lg font-mono font-bold amount text-right">
-    {toShekels(sumLineItems(invoice.lineItems))}
+    {toShekels(invoiceTotal(invoice.lineItems, invoice.discount) * 1.17)}
   </div>
 
   <!-- View BTN -->
-  <div class="center viewButton hidden text-sm lg:flex lg:text-lg">
+  <div class="items-center justify-center viewButton hidden text-sm lg:flex lg:text-lg">
     <a href="#" class="text-blue-700 hover:text-yellow-400"><View /></a>
   </div>
 
   <!-- More BTN -->
-  <div class="center moreButton hidden text-sm lg:flex lg:text-lg relative">
+  <div class="items-center justify-center moreButton hidden text-sm lg:flex lg:text-lg relative">
     <button
       on:click={() => (isAdditionalOptionsOpen = !isAdditionalOptionsOpen)}
       class="text-blue-700 hover:text-yellow-400"><ThreeDots /></button
@@ -85,31 +85,18 @@
   </div>
 </div>
 
-<Modal isVisible={isModalShowing} on:close={() => (isModalShowing = false)}>
-  <div class="flex flex-col justify-between items-center gap-6 h-full min-h-[175px]">
-    <div class="text-center text-xl mt-7 font-bold text-blue-700">
-      Delete invoice to <span class="text-scarlet">{invoice.client.name}</span> for
-      <span class="text-scarlet">{toShekels(sumLineItems(invoice.lineItems))}</span>
-    </div>
-    <div class="flex gap-x-6 ">
-      <Button
-        label="Cancel"
-        onClick={() => (isModalShowing = false)}
-        isAnimated={false}
-        style="secondary"
-      />
-      <Button
-        label="Delete"
-        onClick={() => {
-          isModalShowing = false;
-          deleteInvoice(invoice);
-        }}
-        isAnimated={false}
-        style="destructive"
-      />
-    </div>
-  </div>
-</Modal>
+<ConfirmDelete {invoice} {isModalShowing} on:close={() => (isModalShowing = false)} />
+
+<!-- Slide panel -->
+{#if isInvoiceFormShowing}
+  <SlidePanel
+    on:closePanel={() => {
+      isInvoiceFormShowing = false;
+    }}
+  >
+    <InvoiceForm formState="edit" {invoice} closePanel={() => (isInvoiceFormShowing = false)} />
+  </SlidePanel>
+{/if}
 
 <style lang="postcss">
   .invoice-row {

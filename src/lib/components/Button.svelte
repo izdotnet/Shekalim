@@ -16,7 +16,7 @@
 
 <button
   on:click|preventDefault={() => onClick()}
-  class="relative flex items-center whitespace-nowrap rounded-lg px-5 py-2 font-sansSerif text-base font-semibold lg:px-10 lg:py-3 lg:text-xl"
+  class="relative flex items-center whitespace-nowrap rounded-lg px-5 py-2 font-sansSerif text-base font-semibold lg:px-8 lg:py-3 lg:text-xl"
   class:isAnimated
   class:primary={style === 'primary'}
   class:outline={style === 'outline'}
@@ -26,11 +26,11 @@
   class:textOnlyDestructive={style === 'textOnlyDestructive'}
 >
   {#if iconLeft}
-    <svelte:component this={iconLeft} class="mr-2" />
+    <div class="mr-2"><svelte:component this={iconLeft} /></div>
   {/if}
   {label}
   {#if iconRight}
-    <svelte:component this={iconRight} class="ml-2" />
+    <div class="ml-2"><svelte:component this={iconRight} /></div>
   {/if}
 </button>
 

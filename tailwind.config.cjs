@@ -44,9 +44,11 @@ module.exports = {
         invoiceTableMobile: '1fr 90px'
       },
       zIndex: {
+        toaster: 1000,
         modal: 999,
-        slidePanel: 998,
-        overlay: 997,
+        modalOverlay: 998,
+        slidePanel: 997,
+        overlay: 996,
         navBarToggle: 91,
         navBar: 90
       }

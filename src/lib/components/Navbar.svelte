@@ -30,7 +30,7 @@
 </button>
 
 <header
-  class="z-navBar transition-transform -translate-x-full md:translate-x-0 w-full h-screen md:h-full fixed md:col-span-3 md:relative bg-blue-900 text-center border-r-4 border-yellow-300 shadow-[0_35px_40px_-15px_rgba(0,0,0,1)]"
+  class="z-navBar transition-transform -translate-x-full md:translate-x-0 w-full h-screen md:h-full fixed md:col-span-3 md:relative bg-gradient-to-b from-gray-800 via-blue-900 to-gray-700 text-center border-r-4 border-yellow-400"
   class:translate-x-0={isNavShowing}
 >
   <!-- Logo -->
@@ -38,7 +38,7 @@
     <a href="/invoices">
       <img src="/shekel.svg" alt="Shekalim Logo" class="mx-auto mt-8 mb-8 h-48 w-48 " /></a
     >
-    <p class="font-semibold text-yellow-300 text-4xl mb-14">שקלים</p>
+    <p class="font-semibold text-[#FFC61B] text-4xl mb-14">שקלים</p>
   </div>
 
   <nav>
@@ -63,6 +63,6 @@
   }
 
   nav ul li a.active {
-    @apply text-3xl font-semibold text-goldenFizz;
+    @apply text-3xl font-semibold text-yellow-400;
   }
 </style>
