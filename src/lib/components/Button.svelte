@@ -10,13 +10,17 @@
     | 'outline'
     | 'textOnly'
     | 'textOnlyDestructive' = 'primary';
+
+  export let className: string = '';
+  export let height: 'short' | 'regular' = 'regular';
+
   export let iconLeft: (new (...args: any[]) => SvelteComponent) | null = null;
   export let iconRight: (new (...args: any[]) => SvelteComponent) | null = null;
 </script>
 
 <button
   on:click|preventDefault={() => onClick()}
-  class="relative flex items-center whitespace-nowrap rounded-lg px-5 py-2 font-sansSerif text-base font-semibold lg:px-8 lg:py-3 lg:text-xl"
+  class={`relative flex items-center whitespace-nowrap rounded-lg px-5 py-2 font-sansSerif text-base font-semibold lg:px-8 lg:py-3 lg:text-xl ${className}`}
   class:isAnimated
   class:primary={style === 'primary'}
   class:outline={style === 'outline'}
@@ -24,6 +28,7 @@
   class:secondary={style === 'secondary'}
   class:destructive={style === 'destructive'}
   class:textOnlyDestructive={style === 'textOnlyDestructive'}
+  class:short={height === 'short'}
 >
   {#if iconLeft}
     <div class="mr-2"><svelte:component this={iconLeft} /></div>
@@ -55,5 +60,8 @@
   }
   .textOnlyDestructive {
     @apply bg-transparent px-0 text-scarlet underline hover:no-underline;
+  }
+  .short {
+    @apply !py-1;
   }
 </style>

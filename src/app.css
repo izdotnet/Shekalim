@@ -20,6 +20,11 @@
     @apply h-10 w-full rounded-lg border-2 border-silver px-4 font-sansSerif text-base lg:h-14;
   }
 
+  input[type='number']:disabled {
+    @apply appearance-none;
+    -moz-appearance: textfield;
+  }
+
   textarea {
     @apply h-32 w-full rounded-lg border-2 border-silver p-4  font-sansSerif text-base;
   }
@@ -49,15 +54,21 @@
   }
 
   .invoice-line-item {
-    @apply relative grid gap-5 sm:grid-cols-invoiceLineItem;
+    @apply relative grid gap-4 sm:grid-cols-invoiceLineItemPrint;
     grid-template-areas:
       'description description description'
-      'unitPrice qty amount';
+      'unitPrice quantity amount';
   }
 
   @media (min-width: 640px) {
     .invoice-line-item {
-      grid-template-areas: 'description unitPrice qty amount trash';
+      grid-template-areas: 'description unitPrice quantity amount trash';
+    }
+  }
+
+  @media print {
+    .invoice-line-item {
+      grid-template-areas: 'description unitPrice quantity amount trash';
     }
   }
 
@@ -69,8 +80,8 @@
     grid-area: unitPrice;
   }
 
-  .invoice-line-item .qty {
-    grid-area: qty;
+  .invoice-line-item .quantity {
+    grid-area: quantity;
   }
 
   .invoice-line-item .amount {

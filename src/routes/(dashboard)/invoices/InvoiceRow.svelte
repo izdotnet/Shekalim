@@ -11,6 +11,7 @@
   import SlidePanel from '$lib/components/SlidePanel.svelte';
   import InvoiceForm from './InvoiceForm.svelte';
   import ConfirmDelete from './ConfirmDelete.svelte';
+  import id from 'date-fns/locale/id';
 
   export let invoice: Invoice;
   let isAdditionalOptionsOpen = false;
@@ -64,7 +65,7 @@
 
   <!-- View BTN -->
   <div class="items-center justify-center viewButton hidden text-sm lg:flex lg:text-lg">
-    <a href="#" class="text-blue-700 hover:text-yellow-400"><View /></a>
+    <a href={`/invoices/${invoice.id}`} class="text-blue-700 hover:text-yellow-400"><View /></a>
   </div>
 
   <!-- More BTN -->

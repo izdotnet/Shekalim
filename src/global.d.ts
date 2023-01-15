@@ -31,6 +31,15 @@ type LineItem = {
   quantity: number;
 };
 
+type Settings = {
+  myName: string;
+  email: string;
+  street?: string;
+  city?: string;
+  zipCode?: string;
+  country?: string;
+};
+
 type NotificationType = 'success' | 'error' | 'warning' | 'info';
 
 type Snackbar = {

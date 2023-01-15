@@ -19,7 +19,8 @@ module.exports = {
         colored: '0px 7px 16px rgba(10,70,220,0.002)',
         coloredHover: '0px 16px 25px rgba(10,70,220,0.3)',
         tableRow: '0px 0px 6px rgba(0,0,0,0.16)',
-        slidePanel: '-4px 0px 44px rgba(0,0,0,0.25)'
+        slidePanel: '-4px 0px 44px rgba(0,0,0,0.25)',
+        invoice: '-4px 0px 44px rgba(0,0,0,0.25)'
       },
       colors: {
         lavenderIndigo: '#8657e1',
@@ -41,7 +42,8 @@ module.exports = {
       gridTemplateColumns: {
         invoiceLineItem: '1fr 100px 100px 100px 65px',
         invoiceTable: '100px 100px 60px 1fr 116px 32px 32px',
-        invoiceTableMobile: '1fr 90px'
+        invoiceTableMobile: '1fr 90px',
+        invoiceLineItemPrint: '1fr 100px 100px 100px'
       },
       zIndex: {
         toaster: 1000,

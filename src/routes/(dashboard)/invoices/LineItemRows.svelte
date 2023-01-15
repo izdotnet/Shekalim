@@ -7,6 +7,8 @@
   export let lineItems: LineItem[] | undefined = undefined;
   let dispatch = createEventDispatcher();
 
+  export let editable: boolean = true;
+
   let subtotal: string = '0.00';
   export let discount: number = 0;
   let discountedAmount: string;
@@ -38,39 +40,47 @@
       canDelete={index > 0}
       on:updateLineItem
       isRequired={index === 0}
+      {editable}
     />
   {/each}
 {/if}
 
 <div class="invoice-line-item">
   <div class="col-span-1 sm:col-span-2">
-    <Button
-      label="+ Line Item"
-      style="textOnly"
-      isAnimated={false}
-      onClick={() => {
-        dispatch('addLineItem');
-      }}
-    />
+    {#if editable}
+      <Button
+        label="+ Line Item"
+        style="textOnly"
+        isAnimated={false}
+        onClick={() => {
+          dispatch('addLineItem');
+        }}
+      />
+    {/if}
   </div>
-  <div class="font-bold py-5 text-right text-monsoon">Subtotal</div>
+  <div class="font-bold py-5 text-right text-monsoon print:col-span-3">Subtotal</div>
   <div class="py-5 text-right font-mono whitespace-nowrap">{subtotal}</div>
 </div>
 
 <div class="invoice-line-item">
-  <div class="col-span-2 sm:col-span-3 text-right font-bold py-5 text-monsoon">+ V.A.T</div>
+  <div class="col-span-2 sm:col-span-3 text-right font-bold py-5 text-monsoon print:col-span-4">
+    + V.A.T
+  </div>
   <div class="py-5 text-right font-mono whitespace-nowrap">{vat}</div>
 </div>
 
 <div class="invoice-line-item">
-  <div class="col-span-1 sm:col-span-2 text-right font-bold py-5 text-monsoon">Discount</div>
+  <div class="col-span-1 sm:col-span-2 text-right font-bold py-5 text-monsoon print:col-span-3">
+    Discount
+  </div>
   <div class="relative">
     <input
-      class="line-item h-10 w-full border-b-2 border-dashed border-stone-300 pr-4 text-right focus:border-solid focus:border-blue-700 focus:outline-none"
+      class="line-item print:pr-0 h-10 w-full border-b-2 border-dashed border-stone-300 pr-4 text-right focus:border-solid focus:border-blue-700 focus:outline-none"
       type="number"
       name="discount"
       min="0"
       max="100"
+      disabled={!editable}
       bind:value={discount}
       on:change={() => dispatch('updateDiscount', { discount })}
     />
@@ -80,13 +90,13 @@
 </div>
 
 <div class="invoice-line-item">
-  <div class="col-span-3 sm:col-span-6">
+  <div class="col-span-3 sm:col-span-6 print:col-span-6">
     <CircledAmount label="Total:" amount={total} />
   </div>
 </div>
 
 <style lang="postcss">
   .table-header {
-    @apply hidden text-sm font-bold text-blue-700 sm:block;
+    @apply hidden text-sm font-bold text-blue-700 print:block sm:block;
   }
 </style>

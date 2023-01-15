@@ -6,7 +6,7 @@
       "email": "mail@example.com",
       "id": "1",
       "name": "Mashbir",
-      "zip": "12345"
+      "zipCode": "12345"
     },
     {
       "address": "456 Haturim",
@@ -14,7 +14,7 @@
       "email": "mail@test.com",
       "id": "2",
       "name": "Halav Gad",
-      "zip": "67890"
+      "zipCode": "67890"
     },
     {
       "address": "789 Mizrah",
@@ -22,7 +22,7 @@
       "email": "mail@test.com",
       "id": "3",
       "name": "Coca Cola",
-      "zip": "87654"
+      "zipCode": "87654"
     }
   ],
   "invoices": [
@@ -34,7 +34,7 @@
         "id": "1",
         "name": "Halav Gad",
         "street": "123 Main Street",
-        "zip": "12345"
+        "zipCode": "12345"
       },
       "createdAt": "2023-07-01",
       "dueDate": "2023-07-31",
@@ -68,7 +68,7 @@
         "id": "1",
         "name": "Halav Gad",
         "street": "123 Main Street",
-        "zip": "12345"
+        "zipCode": "12345"
       },
       "createdAt": "2023-07-01",
       "dueDate": "2023-07-06",
@@ -99,7 +99,7 @@
         "id": "2",
         "name": "Mashbir",
         "street": "456 Mizrah",
-        "zip": "98765"
+        "zipCode": "98765"
       },
       "createdAt": "2023-07-01",
       "dueDate": "2023-10-06",
@@ -130,7 +130,7 @@
         "id": "3",
         "name": "Coca Cola",
         "street": "789 Ben Yehuda",
-        "zip": "56789"
+        "zipCode": "56789"
       },
       "createdAt": "2023-07-01",
       "dueDate": "2023-06-06",
@@ -155,7 +155,7 @@
         "id": "3",
         "name": "Mashbir",
         "street": "789 Old Town",
-        "zip": "56789"
+        "zipCode": "56789"
       },
       "createdAt": "2023-07-06",
       "dueDate": "2023-10-06",
@@ -173,5 +173,13 @@
       ],
       "subject": "Clothing"
     }
-  ]
+  ],
+  "settings": {
+    "myName": "Izat Alawi",
+    "email": "mail@example.com",
+    "street": "Ben Yehuda 23",
+    "city": "Jerusalem",
+    "zipCode": "12345",
+    "country": "Israel"
+  }
 }

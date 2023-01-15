@@ -25,3 +25,5 @@ export const updateInvoice = (invoice: Invoice) => {
 export const deleteInvoice = (invoice: Invoice) => {
   invoices.update((prev: Invoice[]) => prev.filter((curInv) => curInv.id !== invoice.id));
 };
+
+export const getInvoiceById = (id: string) => data.invoices.find((invoice) => invoice.id === id);

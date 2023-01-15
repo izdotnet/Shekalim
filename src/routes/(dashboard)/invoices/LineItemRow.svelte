@@ -8,6 +8,8 @@
   export let canDelete: boolean = false;
   export let isRequired: boolean = false;
 
+  export let editable: boolean = true;
+
   let unitPrice: string = twoDecimals(lineItem.amount / lineItem.quantity / 100);
   let amount: string = twoDecimals(lineItem.amount);
 
@@ -33,6 +35,7 @@
       use:init
       bind:value={lineItem.description}
       required={isRequired}
+      disabled={!editable}
     />
   </div>
 
@@ -45,6 +48,7 @@
       step="0.01"
       min="0"
       required={isRequired}
+      disabled={!editable}
       bind:value={unitPrice}
       on:blur={() => {
         unitPrice = twoDecimals(Number(unitPrice));
@@ -61,6 +65,7 @@
       name="quantity"
       min="0"
       required={isRequired}
+      disabled={!editable}
       bind:value={lineItem.quantity}
       on:blur={() => {
         dispatch('updateLineItem');
@@ -82,7 +87,7 @@
   </div>
 
   <div class="trash">
-    {#if canDelete}
+    {#if canDelete && editable}
       <button
         on:click|preventDefault={() => dispatch('removeLineItem', lineItem.id)}
         class="center h-10 w-10 text-blue-700 hover:text-red-500"><Trash /></button
@@ -98,7 +103,7 @@
   }
 
   input[type='text'] {
-    @apply font-sansSerif text-xl font-bold;
+    @apply font-sansSerif text-xl font-bold print:text-base;
   }
 
   input[type='number'] {
@@ -116,6 +121,6 @@
   }
 
   .line-item-label {
-    @apply block sm:hidden;
+    @apply block print:hidden sm:hidden;
   }
 </style>
