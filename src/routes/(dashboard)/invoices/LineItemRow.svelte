@@ -90,7 +90,7 @@
     {#if canDelete && editable}
       <button
         on:click|preventDefault={() => dispatch('removeLineItem', lineItem.id)}
-        class="center h-10 w-10 text-blue-700 hover:text-red-500"><Trash /></button
+        class="center h-10 w-10 text-blue-700 hover:text-red-500 lg:absolute"><Trash /></button
       >
     {/if}
   </div>

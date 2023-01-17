@@ -1,30 +1,30 @@
 export const cities = [
   {
-    value: 'JR',
+    value: 'Jerusalem',
     name: 'Jerusalem'
   },
   {
-    value: 'TA',
+    value: 'Tel-Aviv',
     name: 'Tel-Aviv'
   },
   {
-    value: 'HA',
+    value: 'Haifa',
     name: 'Haifa'
   },
   {
-    value: 'AS',
+    value: 'Ashdod',
     name: 'Ashdod'
   },
   {
-    value: 'BS',
+    value: 'Beersheva',
     name: 'Beersheva'
   },
   {
-    value: 'NT',
+    value: 'Netanya',
     name: 'Netanya'
   },
   {
-    value: 'AK',
+    value: 'Ashkelon',
     name: 'Ashkelon'
   }
 ];

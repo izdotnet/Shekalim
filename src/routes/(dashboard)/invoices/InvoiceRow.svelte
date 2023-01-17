@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { clickOutside } from '$lib/actions/clickOutside';
   import AdditionalOptions from '$lib/components/AdditionalOptions.svelte';
   import ThreeDots from '$lib/components/icons/ThreeDots.svelte';
   import View from '$lib/components/icons/View.svelte';
@@ -22,7 +23,6 @@
   const handleDelete = () => {
     isModalShowing = true;
     isAdditionalOptionsOpen = false;
-    console.log('delete');
   };
 
   const handleEdit = () => {
@@ -69,7 +69,12 @@
   </div>
 
   <!-- More BTN -->
-  <div class="items-center justify-center moreButton hidden text-sm lg:flex lg:text-lg relative">
+  <div
+    class="items-center justify-center moreButton hidden text-sm lg:flex lg:text-lg relative"
+    use:clickOutside={() => {
+      isAdditionalOptionsOpen = false;
+    }}
+  >
     <button
       on:click={() => (isAdditionalOptionsOpen = !isAdditionalOptionsOpen)}
       class="text-blue-700 hover:text-yellow-400"><ThreeDots /></button

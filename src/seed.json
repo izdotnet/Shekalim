@@ -1,42 +1,178 @@
 {
   "clients": [
     {
-      "address": "123 Street",
       "city": "Jerusalem",
-      "email": "mail@example.com",
+      "clientStatus": "active",
+      "email": "compressed@example.com",
       "id": "1",
-      "name": "Mashbir",
-      "zipCode": "12345"
-    },
-    {
-      "address": "456 Haturim",
-      "city": "Tel-Aviv",
-      "email": "mail@test.com",
-      "id": "2",
-      "name": "Halav Gad",
-      "zipCode": "67890"
-    },
-    {
-      "address": "789 Mizrah",
-      "city": "Ashkelon",
-      "email": "mail@test.com",
-      "id": "3",
       "name": "Coca Cola",
-      "zipCode": "87654"
+      "country": "Israel",
+      "street": "123 Street",
+      "postalCode": "12345",
+      "invoices": [
+        {
+          "client": {
+            "name": "Coca Cola"
+          },
+          "createdAt": "2023-07-01",
+          "discount": 10,
+          "dueDate": "2023-07-31",
+          "id": "1",
+          "invoiceNumber": "12345",
+          "invoiceStatus": "draft",
+          "issueDate": "2023-07-01",
+          "lineItems": [
+            {
+              "amount": 100,
+              "description": "Item #1",
+              "id": "1",
+              "quantity": 1
+            },
+            {
+              "amount": 200,
+              "description": "Item #2",
+              "id": "2",
+              "quantity": 1
+            }
+          ],
+          "notes": "**This** please.",
+          "subject": "Items",
+          "terms": "_Pay_ me."
+        },
+        {
+          "client": {
+            "name": "Coca Cola"
+          },
+          "createdAt": "2023-07-01",
+          "discount": 0,
+          "dueDate": "2023-07-06",
+          "id": "2",
+          "invoiceNumber": "12352",
+          "invoiceStatus": "draft",
+          "issueDate": "2023-07-08",
+          "lineItems": [
+            {
+              "amount": 300,
+              "description": "Item #1",
+              "id": "3",
+              "quantity": 1
+            },
+            {
+              "amount": 500,
+              "description": "Item #2",
+              "id": "4",
+              "quantity": 1
+            }
+          ],
+          "subject": "Items"
+        }
+      ]
+    },
+    {
+      "city": "Tel-Aviv",
+      "clientStatus": "archive",
+      "email": "tnuva@test.com",
+      "id": "2",
+      "name": "Tnuva",
+      "country": "Israel",
+      "street": "456 Drive",
+      "postalCode": "67890",
+      "invoices": [
+        {
+          "client": {
+            "name": "Tnuva"
+          },
+          "createdAt": "2023-07-01",
+          "dueDate": "2023-10-06",
+          "id": "6",
+          "invoiceNumber": "12346",
+          "invoiceStatus": "paid",
+          "issueDate": "2023-07-01",
+          "lineItems": [
+            {
+              "amount": 1000,
+              "description": "Complete Tier",
+              "id": "5",
+              "quantity": 1
+            },
+            {
+              "amount": 5000,
+              "description": "Starter Tier",
+              "id": "6",
+              "quantity": 2
+            }
+          ],
+          "subject": "Course Material"
+        }
+      ]
+    },
+    {
+      "city": "Ashdod",
+      "clientStatus": "active",
+      "email": "h&M@test.com",
+      "id": "3",
+      "name": "H&M",
+      "country": "Israel",
+      "street": "789 Boulevard",
+      "postalCode": "87654",
+      "invoices": [
+        {
+          "client": {
+            "name": "H&M"
+          },
+          "createdAt": "2023-07-06",
+          "dueDate": "2023-10-06",
+          "id": "5",
+          "invoiceNumber": "12348",
+          "invoiceStatus": "sent",
+          "issueDate": "2023-07-06",
+          "lineItems": [
+            {
+              "amount": 1000000,
+              "description": "Website Development",
+              "id": "1",
+              "quantity": 1
+            }
+          ],
+          "subject": "Website"
+        },
+        {
+          "client": {
+            "name": "H&M"
+          },
+          "createdAt": "2023-07-01",
+          "dueDate": "2023-06-06",
+          "id": "7",
+          "invoiceNumber": "12347",
+          "invoiceStatus": "sent",
+          "issueDate": "2023-07-01",
+          "lineItems": [
+            {
+              "amount": 5000000,
+              "description": "Website Design",
+              "id": "4",
+              "quantity": 1
+            }
+          ],
+          "subject": "Website"
+        }
+      ]
     }
   ],
   "invoices": [
     {
       "client": {
-        "city": "Netanya",
+        "city": "Jerusalem",
         "clientStatus": "active",
-        "email": "mail@example.com",
+        "email": "compressed@example.com",
         "id": "1",
-        "name": "Halav Gad",
+        "name": "Coca Cola",
+        "country": "Israel",
         "street": "123 Main Street",
-        "zipCode": "12345"
+        "postalCode": "12345"
       },
       "createdAt": "2023-07-01",
+      "discount": 10,
       "dueDate": "2023-07-31",
       "id": "1",
       "invoiceNumber": "12345",
@@ -45,32 +181,34 @@
       "lineItems": [
         {
           "amount": 100,
-          "description": "Milk",
+          "description": "Item #1",
           "id": "1",
           "quantity": 1
         },
         {
           "amount": 200,
-          "description": "Cheese",
+          "description": "Item #2",
           "id": "2",
           "quantity": 1
         }
       ],
       "notes": "**This** please.",
-      "subject": "Pita",
+      "subject": "Items",
       "terms": "_Pay_ me."
     },
     {
       "client": {
-        "city": "Netanya",
+        "city": "Jerusalem",
         "clientStatus": "active",
-        "email": "mail@example.com",
+        "email": "compressed@example.com",
         "id": "1",
-        "name": "Halav Gad",
+        "name": "Coca Cola",
+        "country": "Israel",
         "street": "123 Main Street",
-        "zipCode": "12345"
+        "postalCode": "12345"
       },
       "createdAt": "2023-07-01",
+      "discount": 0,
       "dueDate": "2023-07-06",
       "id": "2",
       "invoiceNumber": "12352",
@@ -79,27 +217,28 @@
       "lineItems": [
         {
           "amount": 300,
-          "description": "Humus",
+          "description": "Item #1",
           "id": "3",
           "quantity": 1
         },
         {
           "amount": 500,
-          "description": "Labneh",
+          "description": "Item #2",
           "id": "4",
           "quantity": 1
         }
       ],
-      "subject": "Food"
+      "subject": "Items"
     },
     {
       "client": {
-        "city": "Jerusalem",
-        "email": "mail@example.com",
+        "city": "Tel-Aviv",
+        "email": "tnuva@example.com",
         "id": "2",
-        "name": "Mashbir",
-        "street": "456 Mizrah",
-        "zipCode": "98765"
+        "name": "Tnuva",
+        "country": "Israel",
+        "street": "456 Country Street",
+        "postalCode": "98765"
       },
       "createdAt": "2023-07-01",
       "dueDate": "2023-10-06",
@@ -110,27 +249,28 @@
       "lineItems": [
         {
           "amount": 1000,
-          "description": "T-shirt",
+          "description": "Complete Tier",
           "id": "5",
           "quantity": 1
         },
         {
           "amount": 5000,
-          "description": "Trousers",
+          "description": "Starter Tier",
           "id": "6",
           "quantity": 2
         }
       ],
-      "subject": "Clothing"
+      "subject": "Course Material"
     },
     {
       "client": {
-        "city": "Tel-Aviv",
-        "email": "mail@example.com",
+        "city": "Ashdod",
+        "email": "h&M@example.com",
         "id": "3",
-        "name": "Coca Cola",
-        "street": "789 Ben Yehuda",
-        "zipCode": "56789"
+        "name": "H&M",
+        "country": "Israel",
+        "street": "789 Common Drive",
+        "postalCode": "56789"
       },
       "createdAt": "2023-07-01",
       "dueDate": "2023-06-06",
@@ -141,21 +281,22 @@
       "lineItems": [
         {
           "amount": 5000000,
-          "description": "Sprite",
+          "description": "Website Design",
           "id": "4",
           "quantity": 1
         }
       ],
-      "subject": "Drinks"
+      "subject": "Website"
     },
     {
       "client": {
-        "city": "Haifa",
-        "email": "mail@example.com",
+        "city": "Ashdod",
+        "email": "h&M@example.com",
         "id": "3",
-        "name": "Mashbir",
-        "street": "789 Old Town",
-        "zipCode": "56789"
+        "name": "H&M",
+        "country": "Israel",
+        "street": "789 Common Drive",
+        "postalCode": "56789"
       },
       "createdAt": "2023-07-06",
       "dueDate": "2023-10-06",
@@ -166,20 +307,20 @@
       "lineItems": [
         {
           "amount": 1000000,
-          "description": "Coats",
+          "description": "Website Development",
           "id": "1",
           "quantity": 1
         }
       ],
-      "subject": "Clothing"
+      "subject": "Website"
     }
   ],
   "settings": {
-    "myName": "Izat Alawi",
-    "email": "mail@example.com",
-    "street": "Ben Yehuda 23",
     "city": "Jerusalem",
-    "zipCode": "12345",
-    "country": "Israel"
+    "email": "izat@example.com",
+    "myName": "Izat Alawi",
+    "country": "Israel",
+    "street": "123 Awesome Street",
+    "postalCode": "54321"
   }
 }

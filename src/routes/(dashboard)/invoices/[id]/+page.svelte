@@ -61,10 +61,10 @@
       <div class="label">From</div>
       <p>
         {$settings.myName} <br />
-        {#if $settings.city && $settings.country && $settings.zipCode && $settings.street}
+        {#if $settings.city && $settings.country && $settings.postalCode && $settings.street}
           {$settings.street} <br />
           {$settings.city}
-          {$settings.zipCode} <br />
+          {$settings.postalCode} <br />
           {$settings.country}
         {/if}
       </p>
@@ -82,7 +82,7 @@
       {data.invoice.client.email}<br />
       {data.invoice.client.street}
       {data.invoice.client.city}
-      {data.invoice.client.zipCode}
+      {data.invoice.client.postalCode}
     </p>
   </div>
 

@@ -21,7 +21,8 @@ type Client = {
   id: string;
   name: string;
   street?: string;
-  zipCode?: string;
+  postalCode?: string;
+  invoices?: Invoice[];
 };
 
 type LineItem = {
@@ -36,7 +37,7 @@ type Settings = {
   email: string;
   street?: string;
   city?: string;
-  zipCode?: string;
+  postalCode?: string;
   country?: string;
 };
 

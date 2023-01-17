@@ -1,0 +1,111 @@
+<script lang="ts">
+  import { clickOutside } from '$lib/actions/clickOutside';
+  import AdditionalOptions from '$lib/components/AdditionalOptions.svelte';
+  import ThreeDots from '$lib/components/icons/ThreeDots.svelte';
+  import Tag from '$lib/components/Tag.svelte';
+  import Edit from '$lib/components/icons/Edit.svelte';
+  import Activate from '$lib/components/icons/Activate.svelte';
+  import Archive from '$lib/components/icons/Archive.svelte';
+  import Trash from '$lib/components/icons/Trash.svelte';
+  import View from '$lib/components/icons/View.svelte';
+  import { sumInvoices } from '$lib/utils/moneyHelpers';
+  import SlidePanel from '$lib/components/SlidePanel.svelte';
+  import ClientForm from './ClientForm.svelte';
+  import ClientDelete from './ClientDelete.svelte';
+
+  export let client: Client;
+
+  let isAdditionalMenuShowing: boolean = false;
+  let isClientsFormShowing = false;
+  let isModalShowing = false;
+
+  const closePanel = () => {
+    isClientsFormShowing = false;
+  };
+
+  const handleEdit = () => {
+    isClientsFormShowing = true;
+    isAdditionalMenuShowing = false;
+  };
+
+  const handleDelete = () => {
+    isModalShowing = true;
+    isAdditionalMenuShowing = false;
+  };
+
+  const receivedInvoices = () => {
+    if (!client?.invoices) return '₪0.00';
+    //find paid invoices
+    const paidInvoices = client.invoices?.filter((invoice) => invoice.invoiceStatus === 'paid');
+
+    //get sum of paid invoices
+    return sumInvoices(paidInvoices, true);
+  };
+
+  const balanceInvoices = () => {
+    if (!client?.invoices) return '₪0.00';
+    const paidInvoices = client.invoices?.filter((invoice) => invoice.invoiceStatus !== 'paid');
+    return sumInvoices(paidInvoices, true);
+  };
+</script>
+
+<div class="client-table client-row rounded-lg bg-white py-3 shadow-tableRow lg:py-6">
+  <div class="status"><Tag className="ml-auto" label={client.clientStatus} /></div>
+  <div class="client-name truncate whitespace-nowrap text-base font-bold lg:text-xl">
+    {client.name}
+  </div>
+  <div class="received text-right font-mono text-sm font-bold lg:text-lg">{receivedInvoices()}</div>
+  <div class="balance text-right font-mono text-sm font-bold text-scarlet lg:text-lg">
+    {balanceInvoices()}
+  </div>
+  <div class="view relative hidden items-center justify-center lg:flex">
+    <a href={`/clients/${client.id}`} class="text-pastelPurple hover:text-daisyBush"><View /></a>
+  </div>
+  <div
+    class="three-dots relative hidden items-center justify-center lg:flex"
+    use:clickOutside={() => {
+      isAdditionalMenuShowing = false;
+    }}
+  >
+    <button
+      class="text-pastelPurple hover:text-daisyBush"
+      on:click={() => {
+        isAdditionalMenuShowing = !isAdditionalMenuShowing;
+      }}><ThreeDots /></button
+    >
+    {#if isAdditionalMenuShowing}
+      <AdditionalOptions
+        options={[
+          { label: 'Edit', icon: Edit, onClick: handleEdit, disabled: false },
+          {
+            label: 'Activate',
+            icon: Activate,
+            onClick: () => {
+              client.clientStatus = 'active';
+              isAdditionalMenuShowing = false;
+            },
+            disabled: client.clientStatus === 'active'
+          },
+          {
+            label: 'Archive',
+            icon: Archive,
+            onClick: () => {
+              client.clientStatus = 'archive';
+              isAdditionalMenuShowing = false;
+            },
+            disabled: client.clientStatus === 'archive'
+          },
+          { label: 'Delete', icon: Trash, onClick: handleDelete, disabled: false }
+        ]}
+      />
+    {/if}
+    <ClientDelete {client} {isModalShowing} on:close={() => (isModalShowing = false)} />
+  </div>
+</div>
+
+<!-- Slide panel -->
+{#if isClientsFormShowing}
+  <SlidePanel on:closePanel={closePanel}>
+    <ClientForm {closePanel} formStatus="edit" {client} />
+  </SlidePanel>
+{/if}

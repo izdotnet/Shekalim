@@ -172,8 +172,8 @@
         </select>
       </div>
       <div class="field col-span-2">
-        <label for="zipCode">Zip Code</label>
-        <input type="text" name="zipCode" id="zipCode" bind:value={newClient.zipCode} />
+        <label for="postalCode">Postal Code</label>
+        <input type="text" name="postalCode" id="postalCode" bind:value={newClient.postalCode} />
       </div>
     </div>
   {/if}

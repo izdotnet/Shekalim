@@ -29,7 +29,11 @@
   class="flex flex-col-reverse md:flex-row justify-between items-start md:items-center mb-7 gap-y-6 md:gap-y-4 lg:mb-16"
 >
   <!-- Search -->
-  <Search />
+  {#if $invoices.length > 0}
+    <Search />
+  {:else}
+    <div />
+  {/if}
   <!-- New Invoice BTN -->
   <div>
     <Button
@@ -55,7 +59,7 @@
         <InvoiceRow {invoice} />
       {/each}
     </div>
-    <CircledAmount label="Total" amount={sumInvoices($invoices)} />
+    <CircledAmount label="Total" amount={sumInvoices($invoices, true)} />
   {/if}
 </div>
 
